@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import zLogo from "../../public/zlogo.png";
+import zLogo from "../../../public/zlogo.png";
 import Button from "@/components/home/Button";
 
 export default function Home() {
