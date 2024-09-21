@@ -1,7 +1,13 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import {useRouter} from "next/navigation";
+import Home from "../page";
 
 const Login = () => {
-  redirect("/i/flow/login");
+  const router = useRouter();
+  router.replace('/i/flow/login');
+  
+  return <Home/>
 };
 
 
