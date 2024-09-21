@@ -17,7 +17,7 @@ export default function Home() {
             <Button fill="blue">계정 만들기</Button>
           </Link>
           <h3>이미 트위터에 가입하셨나요?</h3>
-          <Link href="/login">
+          <Link href="/i/flow/login">
             <Button fill="none">로그인</Button>
           </Link>
         </div>
