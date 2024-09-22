@@ -2,7 +2,7 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div>상태</div>
+    <div>메세지</div>
   )
 };
 

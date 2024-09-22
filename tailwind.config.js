@@ -12,5 +12,6 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  mode: 'jit', // JIT 모드 활성화
 }
 
