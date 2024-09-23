@@ -2,6 +2,7 @@ import React from 'react';
 import Tab from './_component/Tab';
 import TabProvider from './_component/TabProvider';
 import PostForm from './_component/PostForm';
+import Post from './_component/Post';
 
 const page = () => {
   return (
@@ -9,7 +10,6 @@ const page = () => {
       <TabProvider>
         <Tab/>
         <PostForm />
-        {/* <Post/>
         <Post/>
         <Post/>
         <Post/>
@@ -20,7 +20,8 @@ const page = () => {
         <Post/>
         <Post/>
         <Post/>
-        <Post/> */}
+        <Post/>
+        <Post/>
       </TabProvider>
     </main>
   )
