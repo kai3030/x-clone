@@ -3,7 +3,7 @@ type Props = { q?: string, fixed?: boolean }
 
 export default function SearchForm({ q, fixed }: Props) {
   return (
-    <form className={`${fixed && "fixed"} my-3 bg-gray-100 rounded-full w-full flex items-center px-3 py-3`}>
+    <form className={`${fixed && "fixed"} my-2 bg-gray-100 rounded-full w-full flex items-center px-3 py-2`}>
       <svg width={20} viewBox="0 0 24 24" aria-hidden="true" 
       className="fill-slate-500 mx-2">
         <g>

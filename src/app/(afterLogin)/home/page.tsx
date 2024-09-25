@@ -2,7 +2,7 @@ import React from 'react';
 import Tab from './_component/Tab';
 import TabProvider from './_component/TabProvider';
 import PostForm from './_component/PostForm';
-import Post from './_component/Post';
+import Post from '../_component/Post';
 
 const page = () => {
   return (

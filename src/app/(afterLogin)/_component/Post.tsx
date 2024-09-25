@@ -5,7 +5,7 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
-import ActionButtons from "./ActionButtons";
+import ActionButtons from "../home/_component/ActionButtons";
 
 // dayjs plugin
 dayjs.locale("ko"); // 한국어 플러그인

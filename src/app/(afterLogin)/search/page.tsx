@@ -1,8 +1,8 @@
 import style from './search.module.css';
 import BackButton from '../_component/BackButton';
 import SearchForm from "@/app/(afterLogin)/_component/SearchForm";
-import Tab from '../home/_component/Tab';
-import Post from '../home/_component/Post';
+import Tab from "@/app/(afterLogin)/search/_component/Tab";
+import Post from '../_component/Post';
 
 type Props = {
   searchParams: { q: string, f?: string, pf?: string };
