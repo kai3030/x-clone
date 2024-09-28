@@ -27,8 +27,8 @@ export default function Post() {
     createdAt: new Date(),
     Images: [
       { imageId: 1, link: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MTZfMjM3%2FMDAxNjIzODQyOTg3MzY3.7v4ygFFbWeQBe4IXdeeK1RX3WcNTxGr92NE--fmcbLcg.Zx5OhlCBo1uGIuQnhXwtSFCYYHMadsyq-2_eYyRhngEg.JPEG.mssixx%2FIMG_7826.JPG&type=a340'},
-      // { imageId: 2, link: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjExMDZfMjk2%2FMDAxNjY3NzQzMjE1OTQy.OR78TiuR-YiQkcjM7i14_GvR4M9CsX2OwEtHi1BYc-sg.QLUg2PZu6lIFP4lpfrj8xzRo1R5Tc8DL3zdUNDv7tMog.JPEG.310861%2FIMG_4493.JPG&type=a340'},
-      // { imageId: 3, link: kai_profile},
+      { imageId: 2, link: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjExMDZfMjk2%2FMDAxNjY3NzQzMjE1OTQy.OR78TiuR-YiQkcjM7i14_GvR4M9CsX2OwEtHi1BYc-sg.QLUg2PZu6lIFP4lpfrj8xzRo1R5Tc8DL3zdUNDv7tMog.JPEG.310861%2FIMG_4493.JPG&type=a340'},
+      // { imageId: 3, link: 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjExMDZfMjk2%2FMDAxNjY3NzQzMjE1OTQy.OR78TiuR-YiQkcjM7i14_GvR4M9CsX2OwEtHi1BYc-sg.QLUg2PZu6lIFP4lpfrj8xzRo1R5Tc8DL3zdUNDv7tMog.JPEG.310861%2FIMG_4493.JPG&type=a340'},
       // { imageId: 4, link: kai_profile},
     ],
   };
