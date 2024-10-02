@@ -1,50 +1,42 @@
-"use client";
 
-import ModalButton from "@/components/modal/ModalButton";
+import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import ModalInput from "@/components/modal/ModalInput";
-import {useRouter} from "next/navigation";
-import {ChangeEventHandler, FormEventHandler, useState} from "react";
+import { redirect } from "next/navigation";
+
 
 const Signup = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [image, setImage] = useState('');
-  const [imageFile, setImageFile] = useState<File>();
+  const submit = async (FormData: FormData) => {
+    "use server"
 
-  const router = useRouter();
-  const onClickClose = () => {
-    router.back();
-    // TODO: 뒤로가기가 /home이 아니면 /home으로 보내기
-  }
+    // form 유효성 검사
+    if(!FormData.get('id')) return { message: 'no_id' };
+    if(!FormData.get('name')) return { message: 'no_name' };
+    if(!FormData.get('password')) return { message: 'no_password' };
+    if(!FormData.get('image')) return { message: 'no_image' };
 
-  const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => { setId(e.target.value) };
+    let shouldRedirect = false;
 
-  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => { setPassword(e.target.value) };
-  const onChangeNickname: ChangeEventHandler<HTMLInputElement> = (e) => { setNickname(e.target.value) };
-  const onChangeImageFile: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.target.files && setImageFile(e.target.files[0])
-  };
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
+        method: 'POST',
+        body: FormData,
+        credentials: 'include' // 로그인한 유저가 또 회원가입 하는 것을 방지하기 위함
+      });
 
-  const onSubmit: FormEventHandler = (e) => {
-    e.preventDefault();
-    fetch('http://localhost:9090/api/users', {
-      method: 'post',
-      body: JSON.stringify({
-        id,
-        nickname,
-        image,
-        password,
-      }),
-      credentials: 'include',
-    }).then((response: Response) => {
       console.log(response.status);
-      if (response.status === 200) {
-        router.replace('/home');
-      }
-    }).catch((err) => {
+
+      // usr가 이미 존재하는 지 확인
+      if(response.status === 403) return { message: 'user_exists' };
+
+      console.log(await response.json());
+
+      shouldRedirect = true;
+    } catch (err) {
       console.error(err);
-    });
+      return
+    }
+
+    if(shouldRedirect) redirect('/home');
   }
 
   const inputClassName = "w-full h-full mt-3 text-base p-3 outline-none"
@@ -53,66 +45,59 @@ const Signup = () => {
       <div className=" bg-white p-4 relative top-[5%] max-w-[80vw] min-w-[600px] rounded-2xl flex flex-col h-[550px]">
         
         <div className=" text-2xl font-bold">
-          <button className="w-[34px] h-[34px] rounded-2xl left-[16px] top-[16px] flex items-center justify-center" onClick={onClickClose}>
-            <svg
-              width={24}
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"
-            >
-              <g>
-                <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
-              </g>
-            </svg>
-          </button>
+          <BackButton/>
         </div>
 
-        <form className="h-full flex flex-col justify-around" onSubmit={onSubmit} >
+        <form action={submit} className="h-full flex flex-col justify-around" >
           <div className="flex-1 py-0 px-[80px]">
             <div className="text-2xl font-bold mb-8">계정을 생성하세요.</div>
 
             <ModalInput title="아이디" id="id">
               <input
                   id="id"
+                  name="id"
                   className={inputClassName}
-                  value={id}
-                  onChange={onChangeId}
                   type="text"
                   placeholder=""
+                  required
                 />
             </ModalInput>
             <ModalInput title="닉네임" id="nickname">
               <input
                   id="nickname"
+                  name="nickname"
                   className={inputClassName}
-                  value={nickname}
-                  onChange={onChangeNickname}
                   type="text"
                   placeholder=""
+                  required
                 />
             </ModalInput>
             <ModalInput title="비밀번호" id="password">
               <input
                   id="password"
+                  name="password"
                   className={inputClassName}
-                  value={password}
-                  onChange={onChangePassword}
                   type="password"
                   placeholder=""
+                  required
                 />
             </ModalInput>
             <ModalInput title="프로필" id="image">
               <input
                   id="image"
+                  name="image"
                   className={inputClassName}
-                  onChange={onChangeImageFile}
                   type="file"
                   accept="image/*"
+                  required
                 />
             </ModalInput>
           </div>
-
-          <ModalButton id={id} password={password}>가입하기</ModalButton>
+          <div className="py-6 px-20">
+            <button type="submit" className="w-full h-11 rounded-3xl text-white bg-gray-500 hover:bg-gray-700 cursor-pointer transition">
+            가입하기
+            </button>
+        </div>
         </form>
       </div>
     </div>
