@@ -1,14 +1,20 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 export default function LogoutButton() {
-  const me = {
-    // 임시로 내 정보 있는것처럼
-    id: "kai3030",
-    nickname: "카이",
-    image: "/kai_profile.jpg",
+  const router = useRouter();
+  const { data: me } = useSession();
+
+  const onLogout = () => {
+    signOut({ redirect: false })
+      .then(() => {
+        router.replace("/");
+      });
   };
 
-  const onLogout = () => {};
+  if (!me?.user) null;
 
   return (
     <button
@@ -16,11 +22,11 @@ export default function LogoutButton() {
       onClick={onLogout}
     >
       <div className="flex items-center">
-        <img src={me.image} alt={me.id} className="w-[40px] rounded-full" />
+        <img src={me?.user?.image!} alt={me?.user?.id} className="w-[40px] rounded-full" />
       </div>
       <div className="ml-[12px]">
-        <div className="font-bold">{me.nickname}</div>
-        <div>@{me.id}</div>
+        <div className="font-bold">{me?.user?.name}</div>
+        <div>@{me?.user?.email}</div>
       </div>
     </button>
   );
